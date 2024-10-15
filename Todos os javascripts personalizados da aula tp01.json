@@ -1,0 +1,233 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2024-10-15 03:22:15",
+    "containerVersion": {
+        "path": "accounts/6245766867/containers/193247737/versions/0",
+        "accountId": "6245766867",
+        "containerId": "193247737",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6245766867/containers/193247737",
+            "accountId": "6245766867",
+            "containerId": "193247737",
+            "name": "00 TESTE WEB",
+            "publicId": "GTM-MWLB3CFD",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1725403688584",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6245766867/containers/193247737/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-MWLB3CFD"
+            ]
+        },
+        "variable": [
+            {
+                "accountId": "6245766867",
+                "containerId": "193247737",
+                "variableId": "51",
+                "name": "⬛ JS Personalizado | Nome completo",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function getName() {\n    var name = '';\n    window.dataLayer.forEach(function(item) {\n        if (item.formData && item.formData.nome) {\n            name = item.formData.nome;\n        }\n    });\n    return name;\n}\n"
+                    }
+                ],
+                "fingerprint": "1728962498441",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6245766867",
+                "containerId": "193247737",
+                "variableId": "53",
+                "name": "⬛ Tabela RegEx | Primeiro Nome | Form Lead",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{⬛ JS Personalizado | Nome completo}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "(.*)\\s(\\w+)"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "$1"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "(.*)"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "$1"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1728962498442",
+                "parentFolderId": "52",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6245766867",
+                "containerId": "193247737",
+                "variableId": "54",
+                "name": "⬛ JS Personalizado | Email",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function getEmail() {\n    var email = '';\n    window.dataLayer.forEach(function(item) {\n        if (item.formData && item.formData.email) {\n            email = item.formData.email;\n        }\n    });\n    return email;\n}\n"
+                    }
+                ],
+                "fingerprint": "1728962498442",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6245766867",
+                "containerId": "193247737",
+                "variableId": "55",
+                "name": "⬛ JS Personalizado | Telefone",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function getTelefoneValue() {\n    var telefone = '';\n    window.dataLayer.forEach(function(item) {\n        if (item.formData && item.formData.telefone) {\n            telefone = item.formData.telefone;\n        }\n    });\n    return telefone;\n}\n"
+                    }
+                ],
+                "fingerprint": "1728962498442",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6245766867",
+                "containerId": "193247737",
+                "variableId": "56",
+                "name": "⬛Tabela RegEx | Último Nome | Form Lead",
+                "type": "remm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{⬛ JS Personalizado | Nome completo}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "fullMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "replaceAfterMatch",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "ignoreCase",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "(.*)\\s(\\w+)"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "$2"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1728962498443",
+                "parentFolderId": "52",
+                "formatValue": {}
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "6245766867",
+                "containerId": "193247737",
+                "folderId": "52",
+                "name": "🟥 Integrações",
+                "fingerprint": "1728962498442"
+            }
+        ],
+        "fingerprint": "1728962534979",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6245766867/containers/193247737/versions/0?apiLink=version"
+    }
+}
