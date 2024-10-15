@@ -1,0 +1,64 @@
+/* 
+   Esse script deve ser adicionado no seu fluxo do Typebot.
+   Desenvolvido por Gabriel Chabalas® - 2024
+*/
+window.dataLayer = window.dataLayer || [];
+
+// Capturando os dados do usuário
+var nome = {{nome}};
+var email = {{email}};
+var telefone = {{telefone}};
+
+// Simulando o envio de um formulário
+function FormSubmit() {
+  // Evento genérico de envio de formulário
+  window.dataLayer.push({
+    'event': 'formSubmit', // Nome do evento ajustado para 'formSubmit'
+    'eventCategory': 'Form', // Categoria do evento
+    'eventAction': 'Submit', // Ação do evento
+    'eventLabel': 'Typebot Form', // Rótulo do evento (nome do formulário)
+    'formId': 'typebotForm', // ID fictício do formulário
+    'formClass': 'typebot-form-class', // Classe fictícia do formulário
+    'formSelector': '#typebot-form-id', // Seletor CSS fictício do formulário
+    'formData': {
+      'nome': nome,
+      'email': email,
+      'telefone': telefone
+    }
+  });
+
+  // Evento para Google Ads
+  window.dataLayer.push({
+    'event': 'conversion',
+    'conversionType': 'lead',
+    'conversionValue': 1, // ou outro valor relevante
+    'formId': 'typebotForm', // ID do formulário
+    'formData': {
+      'nome': nome,
+      'email': email,
+      'telefone': telefone
+    }
+  });
+
+  // Evento para Meta Ads (Facebook)
+  window.dataLayer.push({
+    'event': 'Lead',
+    'content_name': 'Typebot Lead',
+    'value': 1, // ou outro valor relevante
+    'currency': 'BRL', // ou outra moeda, se necessário
+    'formId': 'typebotForm', // ID do formulário
+    'formData': {
+      'nome': nome,
+      'email': email,
+      'telefone': telefone
+    }
+  });
+
+  // Outros eventos customizados que você precisar
+}
+
+// Executa a função de simulação de envio de formulário
+FormSubmit();
+
+
+
