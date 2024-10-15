@@ -1,0 +1,14 @@
+// Desenvolvido por Gabriel Chabalas® 2024
+
+function getEmail() {
+    var email = '';
+    window.dataLayer.forEach(function(item) {
+        if (item.formData && item.formData.email) {
+            email = item.formData.email;
+        }
+    });
+    return email;
+}
+
+
+
