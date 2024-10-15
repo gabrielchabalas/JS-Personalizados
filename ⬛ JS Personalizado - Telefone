@@ -1,0 +1,13 @@
+// Desenvolvido por Gabriel Chabalas® 2024
+
+function getTelefoneValue() {
+    var telefone = '';
+    window.dataLayer.forEach(function(item) {
+        if (item.formData && item.formData.telefone) {
+            telefone = item.formData.telefone;
+        }
+    });
+    return telefone;
+}
+
+
