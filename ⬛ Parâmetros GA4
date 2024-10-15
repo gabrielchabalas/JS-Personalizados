@@ -1,0 +1,6 @@
+PARÂMETROS GA4 
+
+user_data.address.first_name
+user_data.address.last_name
+user_data.email_address
+user_data.phone_number
