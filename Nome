@@ -1,0 +1,13 @@
+// Desenvolvido por Gabriel Chabalas® 2024
+
+function getName() {
+    var name = '';
+    if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.forEach(function(item) {
+            if (item.formData && item.formData.nome) {
+                name = item.formData.nome;
+            }
+        });
+    }
+    return name;
+}
