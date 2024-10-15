@@ -1,1 +1,2 @@
 
+git reset --hard <commit_id_anterior>
