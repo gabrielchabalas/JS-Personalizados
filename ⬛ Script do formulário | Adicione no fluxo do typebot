@@ -1,64 +1,78 @@
-/* 
-   Esse script deve ser adicionado no seu fluxo do Typebot.
-   Desenvolvido por Gabriel Chabalas® - 2024
-*/
+// Inicializa o dataLayer, caso ainda não exista
 window.dataLayer = window.dataLayer || [];
 
-// Capturando os dados do usuário
-var nome = {{nome}};
-var email = {{email}};
-var telefone = {{telefone}};
+// Função para capturar dinamicamente os dados do formulário
+function captureFormData() {
+    let nome = '';
+    let email = '';
+    let telefone = '';
 
-// Simulando o envio de um formulário
-function FormSubmit() {
-  // Evento genérico de envio de formulário
-  window.dataLayer.push({
-    'event': 'formSubmit', // Nome do evento ajustado para 'formSubmit'
-    'eventCategory': 'Form', // Categoria do evento
-    'eventAction': 'Submit', // Ação do evento
-    'eventLabel': 'Typebot Form', // Rótulo do evento (nome do formulário)
-    'formId': 'typebotForm', // ID fictício do formulário
-    'formClass': 'typebot-form-class', // Classe fictícia do formulário
-    'formSelector': '#typebot-form-id', // Seletor CSS fictício do formulário
-    'formData': {
-      'nome': nome,
-      'email': email,
-      'telefone': telefone
-    }
-  });
+    // Percorre o dataLayer para capturar as informações mais recentes
+    window.dataLayer.forEach(function (item) {
+        if (item.formData) {
+            if (item.formData.nome) nome = item.formData.nome;
+            if (item.formData.email) email = item.formData.email;
+            if (item.formData.telefone) telefone = item.formData.telefone;
+        }
+    });
 
-  // Evento para Google Ads
-  window.dataLayer.push({
-    'event': 'conversion',
-    'conversionType': 'lead',
-    'conversionValue': 1, // ou outro valor relevante
-    'formId': 'typebotForm', // ID do formulário
-    'formData': {
-      'nome': nome,
-      'email': email,
-      'telefone': telefone
-    }
-  });
-
-  // Evento para Meta Ads (Facebook)
-  window.dataLayer.push({
-    'event': 'Lead',
-    'content_name': 'Typebot Lead',
-    'value': 1, // ou outro valor relevante
-    'currency': 'BRL', // ou outra moeda, se necessário
-    'formId': 'typebotForm', // ID do formulário
-    'formData': {
-      'nome': nome,
-      'email': email,
-      'telefone': telefone
-    }
-  });
-
-  // Outros eventos customizados que você precisar
+    return { nome, email, telefone };
 }
 
-// Executa a função de simulação de envio de formulário
+// Função para enviar eventos ao dataLayer
+function pushEventToDataLayer(eventName, additionalData) {
+    if (!eventName) {
+        console.warn("Evento não especificado. Nenhum dado enviado para o dataLayer.");
+        return;
+    }
+
+    const formData = captureFormData(); // Captura os dados do formulário
+    const baseEventData = {
+        event: eventName,
+        eventCategory: 'Form',
+        eventAction: 'Submit',
+        eventLabel: 'Typebot Form', // Nome padronizado para Typebot
+        formId: 'typebotForm', // Identificador padronizado
+        formData: formData
+    };
+
+    // Faz o merge de dados adicionais (se fornecidos)
+    const eventData = { ...baseEventData, ...additionalData };
+
+    // Envia os dados ao dataLayer
+    window.dataLayer.push(eventData);
+    console.log(Evento "${eventName}" enviado ao dataLayer:, eventData);
+}
+
+// Função principal para simular o envio de formulário
+function FormSubmit() {
+    try {
+        // Envia eventos genéricos e específicos
+        pushEventToDataLayer('formSubmit', {
+            eventLabel: 'Typebot Form',
+            formId: 'typebotForm',
+            formClass: 'typebot-form-class',
+            formSelector: '#typebot-form-id'
+        });
+
+        pushEventToDataLayer('conversion', {
+            conversionType: 'lead',
+            conversionValue: 1,
+            formId: 'typebotForm'
+        });
+
+        pushEventToDataLayer('Lead', {
+            content_name: 'Typebot Lead',
+            value: 1,
+            currency: 'BRL',
+            formId: 'typebotForm'
+        });
+
+        console.log("Todos os eventos foram enviados com sucesso.");
+    } catch (error) {
+        console.error("Erro ao executar o envio de formulário:", error);
+    }
+}
+
+// Executa a função de envio
 FormSubmit();
-
-
-
